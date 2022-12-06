@@ -41,7 +41,6 @@ namespace À‡·83 {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Label^ label4;
-	private: Deck^ deck;
 
 	private:
 		/// <summary>

@@ -1,6 +1,6 @@
 #pragma once
 using namespace System::Drawing;
-ref class Card // Карта. 
+ class Card // Карта. 
 {
 protected:
 	int cost;
