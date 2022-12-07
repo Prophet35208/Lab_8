@@ -140,6 +140,18 @@
       <DependentUpon>MainForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\1.png" />
+    <Image Include="Images\10.png" />
+    <Image Include="Images\2.png" />
+    <Image Include="Images\3.png" />
+    <Image Include="Images\4.png" />
+    <Image Include="Images\5.png" />
+    <Image Include="Images\6.png" />
+    <Image Include="Images\7.png" />
+    <Image Include="Images\8.png" />
+    <Image Include="Images\9.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

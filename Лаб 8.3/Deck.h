@@ -4,10 +4,10 @@
  ref class Deck // Колода карт.
 {
 private:
-    array <Card^>^ deck;; // Массив карт. 
+    array <Card^>^ deck; // Массив карт. 
 public:
     Deck();
-    void AddCard(int cost, int place);
+    void AddCard(int cost, int place,Bitmap^ picture);
     void DeleteUpperCard(int place);
     void Reshafle();
     int i = rand();

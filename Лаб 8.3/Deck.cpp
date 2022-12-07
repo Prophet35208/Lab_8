@@ -5,9 +5,9 @@ Deck::Deck()
     this->deck = gcnew array<Card^>(10);
 }
 
-void Deck::AddCard(int cost, int place)
+void Deck::AddCard(int cost, int place, Bitmap^ picture)
 {
-    deck[place] = gcnew Card(cost);
+    deck[place] = gcnew Card(cost, picture);
 }
 
 void Deck::DeleteUpperCard(int place)

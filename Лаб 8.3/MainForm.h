@@ -59,6 +59,8 @@ namespace À‡·83 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+
+
 			System::Windows::Forms::PictureBox^ pictureBox2;
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			System::Windows::Forms::PictureBox^ pictureBox1;
@@ -353,10 +355,21 @@ namespace À‡·83 {
 		}
 #pragma endregion
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	array <Bitmap^>^ pictarr = gcnew array <Bitmap^>(10);
+	pictarr[0] = gcnew Bitmap("Images\\1.png");
+	pictarr[1] = gcnew Bitmap("Images\\2.png");
+	pictarr[2] = gcnew Bitmap("Images\\3.png");
+	pictarr[3] = gcnew Bitmap("Images\\4.png");
+	pictarr[4] = gcnew Bitmap("Images\\5.png");
+	pictarr[5] = gcnew Bitmap("Images\\6.png");
+	pictarr[6] = gcnew Bitmap("Images\\7.png");
+	pictarr[7] = gcnew Bitmap("Images\\8.png");
+	pictarr[8] = gcnew Bitmap("Images\\9.png");
+	pictarr[9] = gcnew Bitmap("Images\\10.png");
 	this->deck = gcnew Deck();
 	for (size_t i = 0; i < 10; i++)
 	{
-		this->deck->AddCard(i+1,i);
+		this->deck->AddCard(i+1,i, pictarr[i]);
 	}
 	this->deck->Reshafle();
 }
