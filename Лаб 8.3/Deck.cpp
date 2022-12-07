@@ -2,40 +2,31 @@
 
 Deck::Deck()
 {
-    this->capacity = 5;
-    for (int i = 0; i < 10; i++)
+    this->deck = gcnew array<Card^>(10);
+}
+
+void Deck::AddCard(int cost, int place)
+{
+    deck[place] = gcnew Card(cost);
+}
+
+void Deck::DeleteUpperCard(int place)
+{
+    deck[place] = nullptr;
+}
+
+void Deck::Reshafle()
+{
+
+    Card^ buf;
+    int rand_value;
+    for (size_t i = 0; i < 9; i++)
     {
-        this->card_flag[i] = 0;
+        srand(time(0));
+        rand_value = rand() % 10;
+        buf = this->deck[rand_value];
+        this->deck[rand_value] = this->deck[i];
+        this->deck[i] = buf;
     }
 }
 
-Deck::Deck(int capacity)
-{
-    this->capacity = capacity;
-    for (int i = 0; i < capacity; i++)
-    {
-        this->card_flag[i] = 0;
-    }
-}
-
-int Deck::Get_Num_Cards()
-{
-    int num = 0;
-    for (int i = 0; i < this->capacity; i++) {
-        if (this->card_flag[i] != 0)
-            num++;
-    }
-    return num;
-}
-
-void Deck::Set_Card_In_Place(Card* card_ptr, int place)
-{
-    this->cards[place - 1] = card_ptr;
-    this->card_flag[place - 1] = 1;
-}
-
-Card* Deck::Get_Card_From_Place(int place)
-{
-    this->card_flag[place - 1] = 0;
-    return this->cards[place - 1];
-}

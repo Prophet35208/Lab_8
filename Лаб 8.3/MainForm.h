@@ -41,6 +41,10 @@ namespace Лаб83 {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Label^ label4;
+	private: System::DirectoryServices::DirectoryEntry^ directoryEntry1;
+	private: System::Windows::Forms::Button^ button2;
+	private: Deck^ deck;
+
 
 	private:
 		/// <summary>
@@ -73,6 +77,8 @@ namespace Лаб83 {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->directoryEntry1 = (gcnew System::DirectoryServices::DirectoryEntry());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			pictureBox3 = (gcnew System::Windows::Forms::PictureBox());
@@ -94,8 +100,8 @@ namespace Лаб83 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(pictureBox8))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(pictureBox9))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(pictureBox10))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(pictureBox11))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pictureBox2
@@ -109,15 +115,6 @@ namespace Лаб83 {
 			pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
 			pictureBox2->TabIndex = 1;
 			pictureBox2->TabStop = false;
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(884, 480);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(104, 44);
-			this->button1->TabIndex = 5;
-			this->button1->Text = L"Взять карту";
-			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// pictureBox1
 			// 
@@ -227,6 +224,26 @@ namespace Лаб83 {
 			pictureBox10->TabIndex = 14;
 			pictureBox10->TabStop = false;
 			// 
+			// pictureBox11
+			// 
+			pictureBox11->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox11.Image")));
+			pictureBox11->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox11.InitialImage")));
+			pictureBox11->Location = System::Drawing::Point(925, 304);
+			pictureBox11->Name = L"pictureBox11";
+			pictureBox11->Size = System::Drawing::Size(63, 99);
+			pictureBox11->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
+			pictureBox11->TabIndex = 19;
+			pictureBox11->TabStop = false;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(884, 480);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(104, 44);
+			this->button1->TabIndex = 5;
+			this->button1->Text = L"Взять карту";
+			this->button1->UseVisualStyleBackColor = true;
+			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
@@ -271,17 +288,6 @@ namespace Лаб83 {
 			this->dataGridView1->Size = System::Drawing::Size(133, 175);
 			this->dataGridView1->TabIndex = 18;
 			// 
-			// pictureBox11
-			// 
-			pictureBox11->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox11.Image")));
-			pictureBox11->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox11.InitialImage")));
-			pictureBox11->Location = System::Drawing::Point(925, 304);
-			pictureBox11->Name = L"pictureBox11";
-			pictureBox11->Size = System::Drawing::Size(63, 99);
-			pictureBox11->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
-			pictureBox11->TabIndex = 19;
-			pictureBox11->TabStop = false;
-			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
@@ -294,11 +300,22 @@ namespace Лаб83 {
 			this->label4->Text = L"Осталось карт: ";
 			this->label4->Visible = false;
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(895, 204);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(93, 36);
+			this->button2->TabIndex = 21;
+			this->button2->Text = L"Обновить колоду";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MainForm::button2_Click);
+			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1056, 600);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(pictureBox11);
 			this->Controls->Add(this->dataGridView1);
@@ -328,12 +345,20 @@ namespace Лаб83 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(pictureBox8))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(pictureBox9))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(pictureBox10))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(pictureBox11))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	};
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->deck = gcnew Deck();
+	for (size_t i = 0; i < 10; i++)
+	{
+		this->deck->AddCard(i+1,i);
+	}
+	this->deck->Reshafle();
+}
+};
 }

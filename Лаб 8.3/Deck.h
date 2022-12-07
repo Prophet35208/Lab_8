@@ -1,16 +1,15 @@
 #include "Card.h"
+#include <iostream>
 #pragma once
- class Deck // Колода карт.
+ ref class Deck // Колода карт.
 {
 private:
-    Card* cards[10]; // Массив карт. 
-    int capacity;
-    int card_flag[10]; // Следит за тем, имеется ли карта в позиции. 0-если нет, 1-если да
+    array <Card^>^ deck;; // Массив карт. 
 public:
     Deck();
-    Deck(int capacity);
-    int Get_Num_Cards();
-    void Set_Card_In_Place(Card* card_ptr, int place);
-    Card* Get_Card_From_Place(int place);
+    void AddCard(int cost, int place);
+    void DeleteUpperCard(int place);
+    void Reshafle();
+    int i = rand();
 };
 

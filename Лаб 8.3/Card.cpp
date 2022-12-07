@@ -10,6 +10,12 @@ Card::Card()
 	this->cost = 1;
 }
 
+Card::Card(int cost, Bitmap^ picture)
+{
+	this->cost = cost;
+	this->picture = picture;
+}
+
 int Card::Get_Cost()
 {
 	return this->cost;
