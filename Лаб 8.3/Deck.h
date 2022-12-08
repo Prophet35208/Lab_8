@@ -5,11 +5,12 @@
 {
 private:
     array <Card^>^ deck; // Массив карт. 
+    int number_of_cards;
 public:
     Deck();
     void AddCard(int cost, int place,Bitmap^ picture);
-    void DeleteUpperCard(int place);
+    void DeleteUpperCard();
     void Reshafle();
-    int i = rand();
+    Card^ GetUpperCard();
 };
 
