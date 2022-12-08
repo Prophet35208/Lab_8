@@ -12,5 +12,6 @@ public:
     void DeleteUpperCard();
     void Reshafle();
     Card^ GetUpperCard();
+    int GetNumberOf_Cards();
 };
 

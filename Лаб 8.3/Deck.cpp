@@ -44,3 +44,8 @@ Card^ Deck::GetUpperCard()
     return card;
 }
 
+int Deck::GetNumberOf_Cards()
+{
+    return this->number_of_cards;
+}
+
