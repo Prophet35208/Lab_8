@@ -1,5 +1,6 @@
 #pragma once
 #include "Deck.h"
+#include "Info.h"
 namespace Лаб83 {
 
 	using namespace System;
@@ -25,6 +26,7 @@ namespace Лаб83 {
 	private: Deck^ deck;
 	private: int num_your_free_card_space_you;
 	private: int num_your_free_card_space_enemy;
+	private: System::Windows::Forms::Button^ button_info;
 	private: int table_flag;
 	public:
 		MainForm(void)
@@ -208,6 +210,7 @@ namespace Лаб83 {
 			this->label_score_you = (gcnew System::Windows::Forms::Label());
 			this->label_score_enemy = (gcnew System::Windows::Forms::Label());
 			this->button_puss_you = (gcnew System::Windows::Forms::Button());
+			this->button_info = (gcnew System::Windows::Forms::Button());
 			pictureBox11 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(pictureBox11))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_enemy_card_5))->BeginInit();
@@ -475,11 +478,22 @@ namespace Лаб83 {
 			this->button_puss_you->UseVisualStyleBackColor = true;
 			this->button_puss_you->Click += gcnew System::EventHandler(this, &MainForm::button_puss_you_Click);
 			// 
+			// button_info
+			// 
+			this->button_info->Location = System::Drawing::Point(675, 13);
+			this->button_info->Name = L"button_info";
+			this->button_info->Size = System::Drawing::Size(83, 34);
+			this->button_info->TabIndex = 25;
+			this->button_info->Text = L"Справка";
+			this->button_info->UseVisualStyleBackColor = true;
+			this->button_info->Click += gcnew System::EventHandler(this, &MainForm::button_info_Click);
+			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(770, 600);
+			this->Controls->Add(this->button_info);
 			this->Controls->Add(this->button_puss_you);
 			this->Controls->Add(this->label_score_enemy);
 			this->Controls->Add(this->label_score_you);
@@ -623,6 +637,10 @@ private: System::Void button_puss_you_Click(System::Object^ sender, System::Even
 		table->Rows->Add(label_score_you->Text, label_score_enemy->Text);
 		table_flag = 1;
 	}
+}
+private: System::Void button_info_Click(System::Object^ sender, System::EventArgs^ e) {
+	Info^ info=gcnew Info();
+	info->ShowDialog();
 }
 };
 }
