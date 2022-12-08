@@ -70,5 +70,8 @@
     <Image Include="Images\10.png">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+    <Image Include="Images\0.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -141,6 +141,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Images\0.png" />
     <Image Include="Images\1.png" />
     <Image Include="Images\10.png" />
     <Image Include="Images\2.png" />
