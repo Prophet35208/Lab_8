@@ -60,7 +60,8 @@ namespace Лаб83 {
 	private: System::Windows::Forms::Label^ label_pass_you;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
-	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label_cards_left;
+
 
 	private: System::Windows::Forms::Button^ button2;
 	private: Deck^ deck;
@@ -166,7 +167,7 @@ namespace Лаб83 {
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->You = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Enemy = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label_cards_left = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label_score_you = (gcnew System::Windows::Forms::Label());
 			this->label_score_enemy = (gcnew System::Windows::Forms::Label());
@@ -319,6 +320,7 @@ namespace Лаб83 {
 			// 
 			// button_take_card
 			// 
+			this->button_take_card->Enabled = false;
 			this->button_take_card->Location = System::Drawing::Point(895, 511);
 			this->button_take_card->Name = L"button_take_card";
 			this->button_take_card->Size = System::Drawing::Size(104, 44);
@@ -385,17 +387,16 @@ namespace Лаб83 {
 			this->Enemy->Name = L"Enemy";
 			this->Enemy->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
 			// 
-			// label4
+			// label_cards_left
 			// 
-			this->label4->AutoSize = true;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label_cards_left->AutoSize = true;
+			this->label_cards_left->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label4->Location = System::Drawing::Point(827, 257);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(192, 29);
-			this->label4->TabIndex = 20;
-			this->label4->Text = L"Осталось карт: ";
-			this->label4->Visible = false;
+			this->label_cards_left->Location = System::Drawing::Point(796, 257);
+			this->label_cards_left->Name = L"label_cards_left";
+			this->label_cards_left->Size = System::Drawing::Size(192, 29);
+			this->label_cards_left->TabIndex = 20;
+			this->label_cards_left->Text = L"Осталось карт: ";
 			// 
 			// button2
 			// 
@@ -431,6 +432,7 @@ namespace Лаб83 {
 			// 
 			// button_puss_you
 			// 
+			this->button_puss_you->Enabled = false;
 			this->button_puss_you->Location = System::Drawing::Point(895, 464);
 			this->button_puss_you->Name = L"button_puss_you";
 			this->button_puss_you->Size = System::Drawing::Size(104, 41);
@@ -448,7 +450,7 @@ namespace Лаб83 {
 			this->Controls->Add(this->label_score_enemy);
 			this->Controls->Add(this->label_score_you);
 			this->Controls->Add(this->button2);
-			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label_cards_left);
 			this->Controls->Add(pictureBox11);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->label3);
@@ -515,6 +517,11 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	pass_you = 0;
 	pass_enemy = 0;
 
+	button_puss_you->Enabled = 1;
+	button_take_card->Enabled = 1;
+
+	label_score_you->ForeColor = System::Drawing::Color::Black;
+	label_score_enemy->ForeColor = System::Drawing::Color::Black;
 }
 private: System::Void button_take_card_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (num_your_free_card_space_you < 6) {
@@ -557,11 +564,11 @@ private: System::Void button_take_card_Click(System::Object^ sender, System::Eve
 		}
 		num_your_free_card_space_you++;
 	deck->Reshafle();
-
+	
+	label_cards_left->Text = "Осталось карт: ";
 	// Enemy turn started
-	if(pass_enemy=0)
+	if(pass_enemy==0)
 	Enemy_Taking_turn();
-
 	}
 }
 private: System::Void button_puss_you_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -571,7 +578,8 @@ private: System::Void button_puss_you_Click(System::Object^ sender, System::Even
 		Enemy_Taking_turn();
 	}
 	label_pass_enemy->Visible = 1;
-	
+	button_puss_you->Enabled = 0;
+	button_take_card->Enabled = 0;
 }
 };
 }

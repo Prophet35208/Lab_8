@@ -1,7 +1,10 @@
 #include "Deck.h"
+#include <random>
 #include <ctime>
+
 Deck::Deck()
 {
+    
     this->deck = gcnew array<Card^>(10);
     number_of_cards = 0;
 }
@@ -19,15 +22,17 @@ void Deck::DeleteUpperCard()
 
 void Deck::Reshafle()
 {
-    Card^ buf;
-    int rand_value;
-    for (size_t j = 0; j < number_of_cards; j++)
-    {
-        srand(clock());
-        rand_value = rand() % 10;
-        buf = this->deck[rand_value];
-        this->deck[rand_value] = this->deck[j];
-        this->deck[j] = buf;
+    if (number_of_cards != 0) {
+        Card^ buf;
+        int rand_value;
+        for (size_t j = 0; j < number_of_cards; j++)
+        {
+            srand(time(0));
+            rand_value = rand() % number_of_cards;
+            buf = this->deck[rand_value];
+            this->deck[rand_value] = this->deck[j];
+            this->deck[j] = buf;
+        }
     }
 }
 
