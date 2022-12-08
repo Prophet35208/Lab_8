@@ -415,7 +415,7 @@ namespace Лаб83 {
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(93, 36);
 			this->button2->TabIndex = 21;
-			this->button2->Text = L"Обновить колоду";
+			this->button2->Text = L"Перезапустить";
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &MainForm::button2_Click);
 			// 
@@ -479,7 +479,7 @@ namespace Лаб83 {
 			this->Controls->Add(this->button_take_card);
 			this->Controls->Add(this->pictureBox_your_card_5);
 			this->Name = L"MainForm";
-			this->Text = L"MainForm";
+			this->Text = L"21";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(pictureBox11))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_enemy_card_5))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox_enemy_card_4))->EndInit();
