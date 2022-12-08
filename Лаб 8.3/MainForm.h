@@ -49,6 +49,12 @@ namespace Лаб83 {
 			pass_you = 0;
 			pass_enemy = 0;
 			table_flag = 0;
+			this->deck = gcnew Deck();
+			for (size_t i = 0; i < 10; i++)
+			{
+				this->deck->AddCard(i + 1, i, pictarr[i]);
+			}
+			this->deck->Reshafle();
 			InitializeComponent();
 			//
 			//TODO: добавьте код конструктора
@@ -88,61 +94,80 @@ namespace Лаб83 {
 	private: System::Windows::Forms::Button^ button_puss_you;
 	private: System::Windows::Forms::PictureBox^ pictureBox_enemy_card_2;
 	private: System::Windows::Forms::PictureBox^ pictureBox_enemy_card_1;
+	private: void EnemyGetsCard() {
+		Card^ current_card;
+		current_card = this->deck->GetUpperCard();
+		if (num_your_free_card_space_enemy == 1) {
+			pictureBox_enemy_card_1->Image = current_card->picture;
+			score_enemy += current_card->Get_Cost();
+			label_score_enemy->Text = score_enemy.ToString() + "\\21";
+			if (score_enemy > 21)
+				label_score_enemy->ForeColor = System::Drawing::Color::Red;
+		}
+		if (num_your_free_card_space_enemy == 2) {
+			pictureBox_enemy_card_2->Image = current_card->picture;
+			score_enemy += current_card->Get_Cost();
+			label_score_enemy->Text = score_enemy.ToString() + "\\21";
+			if (score_enemy > 21)
+				label_score_enemy->ForeColor = System::Drawing::Color::Red;
+		}
+		if (num_your_free_card_space_enemy == 3) {
+			pictureBox_enemy_card_3->Image = current_card->picture;
+			score_enemy += current_card->Get_Cost();
+			label_score_enemy->Text = score_enemy.ToString() + "\\21";
+			if (score_enemy > 21)
+				label_score_enemy->ForeColor = System::Drawing::Color::Red;
+		}
+		if (num_your_free_card_space_enemy == 4) {
+			pictureBox_enemy_card_4->Image = current_card->picture;
+			score_enemy += current_card->Get_Cost();
+			label_score_enemy->Text = score_enemy.ToString() + "\\21";
+			if (score_enemy > 21)
+				label_score_enemy->ForeColor = System::Drawing::Color::Red;
+		}
+		if (num_your_free_card_space_enemy == 5) {
+			pictureBox_enemy_card_5->Image = current_card->picture;
+			score_enemy += current_card->Get_Cost();
+			label_score_enemy->Text = score_enemy.ToString() + "\\21";
+			if (score_enemy > 21)
+				label_score_enemy->ForeColor = System::Drawing::Color::Red;
+		}
+		num_your_free_card_space_enemy++;
+		deck->Reshafle();
+	}
 	private: void Enemy_Taking_turn() {
 		if (score_enemy <= score_you&& score_enemy<=21) {
-			if (score_enemy <= 17) {
-				Card^ current_card;
-				current_card = this->deck->GetUpperCard();
-				if (num_your_free_card_space_enemy == 1) {
-					pictureBox_enemy_card_1->Image = current_card->picture;
-					score_enemy += current_card->Get_Cost();
-					label_score_enemy->Text = score_enemy.ToString() + "\\21";
-					if (score_enemy > 21)
-						label_score_enemy->ForeColor = System::Drawing::Color::Red;
+
+				EnemyGetsCard();
+		}
+		else
+			if (pass_you==0)
+		    {
+				if(score_enemy <= 17)
+				EnemyGetsCard();
+				else {
+					pass_enemy = 1;
+					label_pass_enemy->Visible = 1;
 				}
-				if (num_your_free_card_space_enemy == 2) {
-					pictureBox_enemy_card_2->Image = current_card->picture;
-					score_enemy += current_card->Get_Cost();
-					label_score_enemy->Text = score_enemy.ToString() + "\\21";
-					if (score_enemy > 21)
-						label_score_enemy->ForeColor = System::Drawing::Color::Red;
-				}
-				if (num_your_free_card_space_enemy == 3) {
-					pictureBox_enemy_card_3->Image = current_card->picture;
-					score_enemy += current_card->Get_Cost();
-					label_score_enemy->Text = score_enemy.ToString() + "\\21";
-					if (score_enemy > 21)
-						label_score_enemy->ForeColor = System::Drawing::Color::Red;
-				}
-				if (num_your_free_card_space_enemy == 4) {
-					pictureBox_enemy_card_4->Image = current_card->picture;
-					score_enemy += current_card->Get_Cost();
-					label_score_enemy->Text = score_enemy.ToString() + "\\21";
-					if (score_enemy > 21)
-						label_score_enemy->ForeColor = System::Drawing::Color::Red;
-				}
-				if (num_your_free_card_space_enemy == 5) {
-					pictureBox_enemy_card_5->Image = current_card->picture;
-					score_enemy += current_card->Get_Cost();
-					label_score_enemy->Text = score_enemy.ToString() + "\\21";
-					if (score_enemy > 21)
-						label_score_enemy->ForeColor = System::Drawing::Color::Red;
-				}
-				num_your_free_card_space_enemy++;
-				deck->Reshafle();
-			}
-			else {
+		    }
+			else 
+			{
 				pass_enemy = 1;
 				label_pass_enemy->Visible = 1;
 			}
-		}
-		else {
-			pass_enemy = 1;
-			label_pass_enemy->Visible = 1;
-		}
 		label_cards_left->Text = "Осталось карт: " + deck->GetNumberOf_Cards().ToString();
 		if (pass_enemy == 1 && pass_you == 1 && table_flag == 0) {
 			table->Rows->Add(label_score_you->Text, label_score_enemy->Text);
+			if (score_you > score_enemy)
+				table->Rows[table->RowCount-1]->Cells[0]->Style->ForeColor = System::Drawing::Color::Green;
+			if (score_you < score_enemy)
+				table->Rows[table->RowCount-1]->Cells[1]->Style->ForeColor = System::Drawing::Color::Green;
+			if (score_you == score_enemy)
+				table->Rows[table->RowCount-1]->Cells[0]->Style->ForeColor = System::Drawing::Color::Green;
+				table->Rows[table->RowCount-1]->Cells[1]->Style->ForeColor = System::Drawing::Color::Green;
+
+				//table->RowCount
+				//table->DefaultCellStyle->ForeColor=System::Drawing::Color::Green;
 			table_flag = 1;
 		}
 	}
@@ -331,7 +356,6 @@ namespace Лаб83 {
 			// 
 			// button_take_card
 			// 
-			this->button_take_card->Enabled = false;
 			this->button_take_card->Location = System::Drawing::Point(640, 511);
 			this->button_take_card->Name = L"button_take_card";
 			this->button_take_card->Size = System::Drawing::Size(104, 44);
@@ -405,9 +429,9 @@ namespace Лаб83 {
 				static_cast<System::Byte>(204)));
 			this->label_cards_left->Location = System::Drawing::Point(541, 257);
 			this->label_cards_left->Name = L"label_cards_left";
-			this->label_cards_left->Size = System::Drawing::Size(192, 29);
+			this->label_cards_left->Size = System::Drawing::Size(218, 29);
 			this->label_cards_left->TabIndex = 20;
-			this->label_cards_left->Text = L"Осталось карт: ";
+			this->label_cards_left->Text = L"Осталось карт: 10";
 			// 
 			// button2
 			// 
@@ -443,7 +467,6 @@ namespace Лаб83 {
 			// 
 			// button_puss_you
 			// 
-			this->button_puss_you->Enabled = false;
 			this->button_puss_you->Location = System::Drawing::Point(640, 464);
 			this->button_puss_you->Name = L"button_puss_you";
 			this->button_puss_you->Size = System::Drawing::Size(104, 41);
@@ -591,6 +614,8 @@ private: System::Void button_puss_you_Click(System::Object^ sender, System::Even
 	while (pass_enemy != 1 && num_your_free_card_space_enemy != 6) {
 		Enemy_Taking_turn();
 	}
+	if (num_your_free_card_space_enemy == 6)
+		pass_enemy = 1;
 	label_pass_enemy->Visible = 1;
 	button_puss_you->Enabled = 0;
 	button_take_card->Enabled = 0;
